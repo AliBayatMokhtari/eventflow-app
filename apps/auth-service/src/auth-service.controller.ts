@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AuthServiceService } from './auth-service.service';
 
 @Controller()
@@ -8,5 +8,11 @@ export class AuthServiceController {
   @Get()
   getHello(): string {
     return this.authServiceService.getHello();
+  }
+
+  @Post('register')
+  registerUser(@Body() body: { email: string }) {
+    const { email } = body;
+    return this.authServiceService.simulateUserRegistration(email);
   }
 }
