@@ -1,8 +1,32 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "src",
+  "sourceRoot": "apps/eventflow-app/src",
   "compilerOptions": {
-    "deleteOutDir": true
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/eventflow-app/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/eventflow-app",
+  "projects": {
+    "auth-service": {
+      "type": "application",
+      "root": "apps/auth-service",
+      "entryFile": "main",
+      "sourceRoot": "apps/auth-service/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/auth-service/tsconfig.app.json"
+      }
+    },
+    "eventflow-app": {
+      "type": "application",
+      "root": "apps/eventflow-app",
+      "entryFile": "main",
+      "sourceRoot": "apps/eventflow-app/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/eventflow-app/tsconfig.app.json"
+      }
+    }
   }
 }
